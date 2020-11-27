@@ -2,19 +2,18 @@
 Library    SeleniumLibrary    
 
 
-Suite Setup            Log    I am inside Test Suite Setup   
-Suite Teardown         Log    I am inside Test Suite Teardown   
+Suite Setup            Log    Login Test Suite Start   
+Suite Teardown         Log    This test was executed by %{username} on %{os}   
 Test Setup             Open Browser    ${URL}    chrome
                          
 Test Teardown          Close Browser  
 
 *** Variables ***
-${URL}    http://demo.guru99.com/V1/index.php
-${UserIDElement} =       name=uid
-${PasswordElement} =     name=password
-${UserIdMessage}=    id=message23
-${PasswordMessage}=    id=message18
-${ManagerConfirm}=    xpath=//div[3]/div/ul/li[1]/a
+${URL}                http://demo.guru99.com/V1/index.php
+${email}              systemdrivervn@gmail.com           
+@{message}            User-ID must not be blank    Password must not be blank
+
+
 
 *** Keywords ***
 
@@ -23,25 +22,23 @@ ${ManagerConfirm}=    xpath=//div[3]/div/ul/li[1]/a
 *** Test Cases ***
 
 CheckInputTextField
-    [Documentation]    this is check login test   
-    Click Element      ${UserIDElement}
-    Click Element At Coordinates    name=uid    50    50    
-    Element Text Should Be    ${UserIdMessage}      User-ID must not be blank
-    Log                ${UserIdMessage}          
-    Click Element      ${PasswordElement}
-    Click Element At Coordinates    name=password    50    50   
-    Element Text Should Be    ${PasswordMessage}    Password must not be blank
-    Log                ${PasswordMessage}   
+    [Documentation]               this is check login   
+    Click Element                 name=uid
+    Click Element At Coordinates  name=uid         50    50    
+    Element Text Should Be        id=message23     ${message}[0]   
+                
+    Click Element                 name=password
+    Click Element At Coordinates  name=password    50    50   
+    Element Text Should Be        id=message18     ${message}[1]  
 GenerateAccess
-    Click Element      link=here   
-    Input Text        name=emailid    systemdrivervn@gmail.com
-    Click Button    name=btnLogin   
-    ${UserID}=    Get Text    xpath=//table/tbody/tr[4]/td[2]
-    ${Password}=     Get Text    xpath=//table/tbody/tr[5]/td[2]    
+    Click Element                 link=here   
+    Input Text                    name=emailid     ${email}
+    Submit Form       
+    ${userID}       Get Text      xpath=//table/tbody/tr[4]/td[2]
+    ${password}     Get Text      xpath=//table/tbody/tr[5]/td[2]    
     Go Back
     Go Back    
-    Input Text    ${UserIDElement}    ${UserID}
-    Input Text    ${PasswordElement}  ${Password}
+    Input Text                    name=uid         ${userID}
+    Input Text                    name=password    ${password}
     Submit Form               
-    #
-    Element Text Should Be    ${ManagerConfirm}    Manager     
+    Element Text Should Be        xpath=//div[3]/div/ul/li[1]/a    Manager     
