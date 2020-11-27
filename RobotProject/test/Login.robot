@@ -18,8 +18,8 @@ ${email}              systemdrivervn@gmail.com
 *** Test Cases ***
 
 CheckInputTextField
-    [Documentation]               Click outside inputfield after click inside inputfield 
-    Maximize Browser Window  
+    [Documentation]               Click outside inputfield after click inside inputfield   
+    Maximize Browser Window
     Click Element                 name=uid
     Click Element At Coordinates  name=uid         50    50    
     Element Text Should Be        id=message23     ${message}[0]   
@@ -41,4 +41,4 @@ GenerateAccessAndLogIn
     Input Text                    name=password    ${password}
     Submit Form               
     Element Text Should Be        xpath=//div[3]/div/ul/li[1]/a    Manager  
-    Set Browser Implicit Wait     0   
+    Set Browser Implicit Wait     0      
