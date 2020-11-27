@@ -4,9 +4,9 @@ Library    SeleniumLibrary
 
 Suite Setup            Log    Login Test Suite Start   
 Suite Teardown         Log    This test was executed by %{username} on %{os}   
-Test Setup             Open Browser    ${URL}    chrome
-                         
-Test Teardown          Close Browser  
+Test Setup             Open Browser    ${URL}    chrome                       
+Test Teardown          Close Browser
+Default Tags           Login  
 
 *** Variables ***
 ${URL}                http://demo.guru99.com/V1/index.php
@@ -30,7 +30,7 @@ CheckInputTextField
     Click Element                 name=password
     Click Element At Coordinates  name=password    50    50   
     Element Text Should Be        id=message18     ${message}[1]  
-GenerateAccess
+GenerateAccessAndLogIn
     Click Element                 link=here   
     Input Text                    name=emailid     ${email}
     Submit Form       
