@@ -15,7 +15,6 @@ ${email}              systemdrivervn@gmail.com
 
 *** Keywords ***
   
-  
 *** Test Cases ***
 
 CheckInputTextField
