@@ -11,7 +11,7 @@ Default Tags          Login
 ${URL}                http://demo.guru99.com/V1/index.php
 ${BROWSER}            chrome
 ${email}              systemdrivervn@gmail.com           
-@{message}            User-ID must not be blank    Password must not be blank
+@{message}            User-ID must not be blank    Password must not be blank    Welcome To Manager's Page of GTPL Bank
 
 *** Keywords ***
   
@@ -29,16 +29,16 @@ CheckInputTextField
 GenerateAccessAndLogIn
     [Documentation]               Get userId, password And Login
     Set Browser Implicit Wait     3
-    Maximize Browser Window   
+    Maximize Browser Window
     Click Element                 link=here   
     Input Text                    xpath=//table/tbody/tr[5]/td[2]/input     ${email}
-    Submit Form   
+    Submit Form
     ${userID}       Get Text      xpath=//table/tbody/tr[4]/td[2]
     ${password}     Get Text      xpath=//table/tbody/tr[5]/td[2]  
     Go Back
-    Go Back 
+    Go Back
     Input Text                    name=uid         ${userID}
     Input Text                    name=password    ${password}
-    Submit Form               
-    Element Text Should Be        xpath=//table/tbody/tr[2]/td/marquee    Welcome To Manager's Page of GTPL Bank  
+    Submit Form
+    Element Text Should Be        xpath=//table/tbody/tr[2]/td/marquee    ${message}[3]  
     Set Browser Implicit Wait     0      
