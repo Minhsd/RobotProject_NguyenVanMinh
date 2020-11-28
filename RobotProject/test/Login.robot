@@ -40,5 +40,5 @@ GenerateAccessAndLogIn
     Input Text                    name=uid         ${userID}
     Input Text                    name=password    ${password}
     Submit Form               
-    Element Text Should Be        xpath=//div[3]/div/ul/li[1]/a    Manager  
+    Element Text Should Be        xpath=//table/tbody/tr[2]/td/marquee    Welcome To Manager's Page of GTPL Bank  
     Set Browser Implicit Wait     0      
